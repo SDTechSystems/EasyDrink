@@ -50,3 +50,7 @@ keystore.properties
 # Knowledge base files (do not commit)
 Knowledge/
 knowledge/
+
+# Cloudflare Wrangler
+.wrangler
+.dev.vars*
