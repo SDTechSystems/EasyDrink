@@ -66,7 +66,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
   const [loadDummy, setLoadDummy] = useState(false);
   const [saving, setSaving] = useState(false);
   const [restoring, setRestoring] = useState(false);
-  const [themeColor, setThemeColorState] = useState('215');
+  const [themeColor, setThemeColorState] = useState('255');
   const [installDone, setInstallDone] = useState(false);
   const { canInstall, isInstalled, install } = usePWAInstall();
 

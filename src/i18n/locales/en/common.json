@@ -159,6 +159,7 @@
     "description": "Start building your amazing project here!"
   },
   "themeColors": {
+    "easydrink": "EasyDrink",
     "blue": "Blue",
     "orange": "Orange",
     "green": "Green",
