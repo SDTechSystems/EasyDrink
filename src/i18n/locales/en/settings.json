@@ -6,7 +6,7 @@
     "title": "Install as App",
     "hint": "Open directly from home screen, no browser needed",
     "installButton": "Install",
-    "installSuccess": "FreeKasir installed successfully!",
+    "installSuccess": "EasyDrink installed successfully!",
     "helpButton": "How to Install"
   },
   "installHelp": {
@@ -164,10 +164,10 @@
     "title": "Language / Bahasa"
   },
   "about": {
-    "appName": "FreeKasir",
+    "appName": "EasyDrink",
     "tagline": "Free POS for small businesses 🇨🇴",
     "version": "v{{version}} • Data stored on device",
-    "whatsNew": "What's New in FreeKasir",
+    "whatsNew": "What's New in EasyDrink",
     "storageUsed": "Storage Used"
   },
   "storeDialog": {
@@ -878,7 +878,7 @@
     }
   },
   "loginScreen": {
-    "storeFallback": "FreeKasir",
+    "storeFallback": "EasyDrink",
     "continuePrompt": "Sign in to continue",
     "usernameLabel": "Username",
     "usernamePlaceholder": "e.g. budi",
@@ -914,7 +914,7 @@
     "print": "Print",
     "printKitchen": "Print Kitchen",
     "watermarkLine1": "Printed From",
-    "watermarkLine2": "FreeKasir.com App",
+    "watermarkLine2": "EasyDrink App",
     "done": "Done",
     "toast": {
       "captureError": "Failed to create receipt image",
@@ -1006,8 +1006,8 @@
     "lastBackup": "Last backup: {{time}}",
     "neverBackedUp": "You have not backed up data yet",
     "backupNow": "Backup Now",
-    "shareTitle": "Backup FreeKasir",
-    "shareText": "FreeKasir backup data file (JSON)",
+    "shareTitle": "Backup EasyDrink",
+    "shareText": "EasyDrink backup data file (JSON)",
     "shareDialogTitle": "Save / Share Backup",
     "successCreated": "Backup created successfully!",
     "successDownloaded": "Backup downloaded successfully",
@@ -1105,7 +1105,7 @@
     "printLogoDescription": "Print the store logo at the very top of the physical receipt. Ensure your thermal printer supports image/bitmap printing.",
     "footerLabel": "Receipt Footer Text",
     "hideWatermarkLabel": "Hide Application Watermark",
-    "hideWatermarkDescActive": "Hide the \"Printed From FreeKasir.com App\" watermark at the bottom of the receipt.",
+    "hideWatermarkDescActive": "Hide the \"Printed From EasyDrink App\" watermark at the bottom of the receipt.",
     "saveSuccess": "Receipt settings saved successfully",
     "saveFailed": "Failed to save receipt settings"
   },

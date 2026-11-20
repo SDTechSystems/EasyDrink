@@ -272,7 +272,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                     <>
                       <img
                         src="/header-icon.png"
-                        alt="FreeKasir"
+                        alt="EasyDrink"
                         className="w-28 h-28 object-contain"
                       />
                       <div className="space-y-3">

@@ -1,7 +1,7 @@
 {
   "slides": {
     "welcome": {
-      "title": "Bienvenido a FreeKasir",
+      "title": "Bienvenido a EasyDrink",
       "description": "Una app de punto de venta gratis. Gestiona ventas, stock y reportes financieros, todo en una sola app y desde tu celular, sin complicaciones."
     },
     "cashier": {
@@ -24,13 +24,13 @@
   "install": {
     "installed": "¡Instalada!",
     "title": "Instalar como app",
-    "installedDesc": "FreeKasir está instalada. ¡Puedes abrirla directamente desde tu pantalla de inicio!",
-    "desc": "Instala FreeKasir en tu celular para abrirla directamente desde la pantalla de inicio, sin abrir el navegador.",
+    "installedDesc": "EasyDrink está instalada. ¡Puedes abrirla directamente desde tu pantalla de inicio!",
+    "desc": "Instala EasyDrink en tu celular para abrirla directamente desde la pantalla de inicio, sin abrir el navegador.",
     "button": "Instalar como app",
     "continueBrowser": "Continuar en el navegador",
     "chromeHint": "Para instalar, ábrela en Chrome y toca el menú (⋮) → \"Agregar a la pantalla principal\" o \"Instalar app\".",
     "safariHint": "En Safari iOS: toca el botón Compartir (↑) → \"Agregar a inicio\"",
-    "success": "¡FreeKasir se instaló correctamente!"
+    "success": "¡EasyDrink se instaló correctamente!"
   },
   "store": {
     "title": "Configura tu tienda",

@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "FreeKasir",
+    "name": "EasyDrink",
     "tagline": "Free POS — Manage Your Sales with Ease 🇨🇴"
   },
   "nav": {
@@ -64,7 +64,7 @@
     "storageUsed": "Storage Used"
   },
   "whatsNew": {
-    "title": "What's New in FreeKasir",
+    "title": "What's New in EasyDrink",
     "slide": "Slide {{number}}",
     "finish": "Done",
     "skip": "Skip"
@@ -106,8 +106,8 @@
       "ctaLabel": "Open Reports"
     },
     "2026-06-rebrand-freekasir": {
-      "title": "New Look: FreeKasir",
-      "description": "This application is now named FreeKasir with a fresh new look and colors. Your functions and data remain unchanged. Prefer other colors? You can still choose your favorite theme in Settings → Theme Color.",
+      "title": "New Look: EasyDrink",
+      "description": "This application is now named EasyDrink with a fresh new look and colors. Your functions and data remain unchanged. Prefer other colors? You can still choose your favorite theme in Settings → Theme Color.",
       "ctaLabel": "Change Theme Color"
     },
     "2026-06-stock-search-scan": {
@@ -185,7 +185,7 @@
     "change": "Change",
     "thanks": "Thank you!",
     "watermarkLine1": "Printed From",
-    "watermarkLine2": "FreeKasir.com App",
+    "watermarkLine2": "EasyDrink App",
     "kitchenTicket": "KITCHEN TICKET",
     "dailyTitle": "DAILY SALES REPORT",
     "period": "Period",
@@ -289,8 +289,8 @@
     "noData": "Backup file contains no data",
     "rollbackFailed": "Import failed and rollback failed. Try restoring from a backup file.",
     "importFailed": "Import failed; data was restored",
-    "shareTitle": "FreeKasir Backup",
-    "shareText": "FreeKasir data backup file (JSON)",
+    "shareTitle": "EasyDrink Backup",
+    "shareText": "EasyDrink data backup file (JSON)",
     "dialogTitle": "Save / Share Backup",
     "success": "Backup created!",
     "failed": "Failed to create / share the backup file",

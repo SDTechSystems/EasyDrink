@@ -18,25 +18,25 @@ export default defineConfig(({ mode }) => ({
     mode === "development" && componentTagger(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "kasirgratisan-icon.png", "og-image.png"],
+      includeAssets: ["favicon.ico", "apple-touch-icon.png", "easydrink-icon.png"],
       manifest: {
-        name: "FreeKasir - POS gratis",
-        short_name: "FreeKasir",
-        description: "Punto de venta gratis para pequeños negocios. Sin internet y sin costo.",
+        name: "EasyDrink",
+        short_name: "EasyDrink",
+        description: "Ventas, inventario, clientes y deudas de EasyDrink.",
         start_url: "/",
         display: "standalone",
         background_color: "#FFFFFF",
-        theme_color: "#F97316",
+        theme_color: "#0169FF",
         orientation: "any",
         icons: [
           {
-            src: "/kasirgratisan-icon.png",
+            src: "/android-chrome-192x192.png",
             sizes: "192x192",
             type: "image/png",
             purpose: "any"
           },
           {
-            src: "/kasirgratisan-icon.png",
+            src: "/easydrink-icon.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "any maskable",

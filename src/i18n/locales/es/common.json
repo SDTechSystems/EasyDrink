@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "FreeKasir",
+    "name": "EasyDrink",
     "tagline": "POS gratis — Gestiona tus ventas con facilidad 🇨🇴"
   },
   "nav": {
@@ -64,7 +64,7 @@
     "storageUsed": "Almacenamiento usado"
   },
   "whatsNew": {
-    "title": "Novedades de FreeKasir",
+    "title": "Novedades de EasyDrink",
     "slide": "Diapositiva {{number}}",
     "finish": "Listo",
     "skip": "Omitir"
@@ -106,8 +106,8 @@
       "ctaLabel": "Abrir reportes"
     },
     "2026-06-rebrand-freekasir": {
-      "title": "Nueva imagen: FreeKasir",
-      "description": "Esta aplicación ahora se llama FreeKasir y tiene una imagen y colores nuevos. Tus funciones y datos siguen igual. ¿Prefieres otros colores? Puedes elegir tu tema favorito en Ajustes → Color del tema.",
+      "title": "Nueva imagen: EasyDrink",
+      "description": "Esta aplicación ahora se llama EasyDrink y tiene una imagen y colores nuevos. Tus funciones y datos siguen igual. ¿Prefieres otros colores? Puedes elegir tu tema favorito en Ajustes → Color del tema.",
       "ctaLabel": "Cambiar color del tema"
     },
     "2026-06-stock-search-scan": {
@@ -185,7 +185,7 @@
     "change": "Cambio",
     "thanks": "¡Gracias!",
     "watermarkLine1": "Impreso desde la app",
-    "watermarkLine2": "FreeKasir.com",
+    "watermarkLine2": "EasyDrink",
     "kitchenTicket": "COMANDA",
     "dailyTitle": "REPORTE DIARIO DE VENTAS",
     "period": "Periodo",
@@ -289,8 +289,8 @@
     "noData": "La copia de seguridad no contiene datos",
     "rollbackFailed": "La importación falló y no se pudieron restaurar los datos anteriores. Intenta restaurar desde una copia de seguridad.",
     "importFailed": "La importación falló; se restauraron los datos anteriores",
-    "shareTitle": "Copia de seguridad FreeKasir",
-    "shareText": "Copia de seguridad de los datos de FreeKasir (JSON)",
+    "shareTitle": "Copia de seguridad EasyDrink",
+    "shareText": "Copia de seguridad de los datos de EasyDrink (JSON)",
     "dialogTitle": "Guardar / compartir copia de seguridad",
     "success": "¡Copia de seguridad creada!",
     "failed": "No se pudo crear o compartir la copia de seguridad",

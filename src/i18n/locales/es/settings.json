@@ -6,7 +6,7 @@
     "title": "Instalar como aplicación",
     "hint": "Ábrela directamente desde la pantalla de inicio, sin navegador",
     "installButton": "Instalar",
-    "installSuccess": "¡FreeKasir se instaló correctamente!",
+    "installSuccess": "¡EasyDrink se instaló correctamente!",
     "helpButton": "Cómo instalar"
   },
   "installHelp": {
@@ -164,10 +164,10 @@
     "title": "Idioma / Language"
   },
   "about": {
-    "appName": "FreeKasir",
+    "appName": "EasyDrink",
     "tagline": "POS gratuito para micro y pequeños negocios 🇨🇴",
     "version": "v{{version}} • Datos guardados en el dispositivo",
-    "whatsNew": "Novedades de FreeKasir",
+    "whatsNew": "Novedades de EasyDrink",
     "storageUsed": "Almacenamiento usado"
   },
   "storeDialog": {
@@ -878,7 +878,7 @@
     }
   },
   "loginScreen": {
-    "storeFallback": "FreeKasir",
+    "storeFallback": "EasyDrink",
     "continuePrompt": "Inicia sesión para continuar",
     "usernameLabel": "Usuario",
     "usernamePlaceholder": "p. ej. carlos",
@@ -914,7 +914,7 @@
     "print": "Imprimir",
     "printKitchen": "Imprimir comanda",
     "watermarkLine1": "Impreso desde",
-    "watermarkLine2": "la app FreeKasir.com",
+    "watermarkLine2": "la app EasyDrink",
     "done": "Listo",
     "toast": {
       "captureError": "No se pudo crear la imagen del recibo",
@@ -1006,8 +1006,8 @@
     "lastBackup": "Última copia de seguridad: {{time}}",
     "neverBackedUp": "Aún no has hecho una copia de seguridad",
     "backupNow": "Hacer copia ahora",
-    "shareTitle": "Copia de seguridad FreeKasir",
-    "shareText": "Archivo de copia de seguridad de FreeKasir (JSON)",
+    "shareTitle": "Copia de seguridad EasyDrink",
+    "shareText": "Archivo de copia de seguridad de EasyDrink (JSON)",
     "shareDialogTitle": "Guardar / compartir copia de seguridad",
     "successCreated": "¡Copia de seguridad creada correctamente!",
     "successDownloaded": "Copia de seguridad descargada correctamente",
@@ -1105,7 +1105,7 @@
     "printLogoDescription": "Imprime el logo de la tienda en la parte superior del recibo físico. Asegúrate de que tu impresora térmica admita la impresión de imágenes/mapas de bits.",
     "footerLabel": "Texto del pie del recibo",
     "hideWatermarkLabel": "Ocultar marca de agua de la aplicación",
-    "hideWatermarkDescActive": "Oculta la marca de agua \"Impreso desde la app FreeKasir.com\" en la parte inferior del recibo.",
+    "hideWatermarkDescActive": "Oculta la marca de agua \"Impreso desde la app EasyDrink\" en la parte inferior del recibo.",
     "saveSuccess": "Ajustes del recibo guardados correctamente",
     "saveFailed": "No se pudieron guardar los ajustes del recibo"
   },
