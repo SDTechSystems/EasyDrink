@@ -34,6 +34,33 @@ interface CartItem {
   notes?: string;
 }
 
+// The cart in progress is kept in localStorage so it survives moving between
+// pages (the Cashier page unmounts) and reloading the app.
+const CART_DRAFT_KEY = 'easydrink_cart_draft';
+
+interface CartDraft {
+  cart: CartItem[];
+  editingTxId: number | null;
+  txDiscountType: 'percentage' | 'nominal' | null;
+  txDiscountValue: string;
+  customerName: string;
+  customerId?: number;
+  tableNumber: string;
+  remarks: string;
+  fromHome: boolean;
+}
+
+function loadCartDraft(): Partial<CartDraft> {
+  try {
+    const raw = localStorage.getItem(CART_DRAFT_KEY);
+    if (!raw) return {};
+    const draft = JSON.parse(raw) as Partial<CartDraft>;
+    return Array.isArray(draft.cart) ? draft : {};
+  } catch {
+    return {};
+  }
+}
+
 
 
 export default function Kasir() {
@@ -48,12 +75,13 @@ export default function Kasir() {
 
   const [search, setSearch] = useState('');
   const [filterCategory, setFilterCategory] = useState<string>('all');
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const [editingTxId, setEditingTxId] = useState<number | null>(null);
+  const [initialDraft] = useState(loadCartDraft);
+  const [cart, setCart] = useState<CartItem[]>(() => initialDraft.cart ?? []);
+  const [editingTxId, setEditingTxId] = useState<number | null>(() => initialDraft.editingTxId ?? null);
   const [cartOpen, setCartOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
-  const [txDiscountType, setTxDiscountType] = useState<'percentage' | 'nominal' | null>(null);
-  const [txDiscountValue, setTxDiscountValue] = useState('');
+  const [txDiscountType, setTxDiscountType] = useState<'percentage' | 'nominal' | null>(() => initialDraft.txDiscountType ?? null);
+  const [txDiscountValue, setTxDiscountValue] = useState(() => initialDraft.txDiscountValue ?? '');
   const [discountDialogOpen, setDiscountDialogOpen] = useState(false);
   const [tempDiscountType, setTempDiscountType] = useState<'percentage' | 'nominal'>('nominal');
   const [tempDiscountValue, setTempDiscountValue] = useState('');
@@ -64,15 +92,15 @@ export default function Kasir() {
   const [paymentMethodId, setPaymentMethodId] = useState<string>('');
   const [paymentAmount, setPaymentAmount] = useState('');
   const [useDebt, setUseDebt] = useState(false);
-  const [fromHome, setFromHome] = useState(false);
+  const [fromHome, setFromHome] = useState(() => initialDraft.fromHome ?? false);
   const [isQuickAdding, setIsQuickAdding] = useState(false);
   const [receiptOpen, setReceiptOpen] = useState(false);
   const [lastTransaction, setLastTransaction] = useState<Transaction | null>(null);
   const [lastTxItems, setLastTxItems] = useState<TransactionItemRecord[]>([]);
-  const [customerName, setCustomerName] = useState('');
-  const [customerId, setCustomerId] = useState<number | undefined>(undefined);
-  const [tableNumber, setTableNumber] = useState('');
-  const [remarks, setRemarks] = useState('');
+  const [customerName, setCustomerName] = useState(() => initialDraft.customerName ?? '');
+  const [customerId, setCustomerId] = useState<number | undefined>(() => initialDraft.customerId);
+  const [tableNumber, setTableNumber] = useState(() => initialDraft.tableNumber ?? '');
+  const [remarks, setRemarks] = useState(() => initialDraft.remarks ?? '');
   const [scannerOpen, setScannerOpen] = useState(false);
   const [openBillsOpen, setOpenBillsOpen] = useState(false);
   const [editingItemNotes, setEditingItemNotes] = useState<number | null>(null);
@@ -656,6 +684,43 @@ export default function Kasir() {
       scanInputRef.current.focus();
     }
   }, [scanInput]);
+
+  // Save the cart in progress so it is still there after changing pages.
+  useEffect(() => {
+    try {
+      if (cart.length === 0 && editingTxId == null) {
+        localStorage.removeItem(CART_DRAFT_KEY);
+        return;
+      }
+      const draft: CartDraft = { cart, editingTxId, txDiscountType, txDiscountValue, customerName, customerId, tableNumber, remarks, fromHome };
+      localStorage.setItem(CART_DRAFT_KEY, JSON.stringify(draft));
+    } catch {
+      // Storage full or unavailable: the cart still works for this visit.
+    }
+  }, [cart, editingTxId, txDiscountType, txDiscountValue, customerName, customerId, tableNumber, remarks, fromHome]);
+
+  // Keep products in a restored cart in sync with the catalog (price, stock,
+  // photo) and drop products that were deleted meanwhile.
+  useEffect(() => {
+    if (!products) return;
+    setCart(prev => {
+      let changed = false;
+      const next: CartItem[] = [];
+      for (const item of prev) {
+        const fresh = products.find(p => p.id === item.product.id);
+        if (!fresh) { changed = true; continue; }
+        if (fresh !== item.product) changed = true;
+        next.push(fresh === item.product ? item : { ...item, product: fresh });
+      }
+      return changed ? next : prev;
+    });
+  }, [products]);
+
+  // A restored open bill that was paid or cancelled elsewhere is no longer valid.
+  useEffect(() => {
+    if (!openBills || editingTxId == null) return;
+    if (!openBills.some(b => b.id === editingTxId)) doFullReset();
+  }, [openBills, editingTxId]);
 
   // Open the Open Bills sheet when navigated here from the dashboard
   useEffect(() => {
