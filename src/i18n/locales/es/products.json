@@ -158,5 +158,18 @@
       "shareDialogTitle": "Guardar / compartir plantilla",
       "shareTitle": "Plantilla para importar productos"
     }
+  },
+  "homeStock": {
+    "button": "Inventario en casa",
+    "title": "Oficina y casa: {{name}}",
+    "office": "En oficina",
+    "home": "En casa",
+    "toHome": "Llevar a casa",
+    "toOffice": "Traer a oficina",
+    "qtyPlaceholder": "Cantidad (máx. {{max}})",
+    "save": "Mover unidades",
+    "saved": "Inventario actualizado",
+    "invalid": "Escribe una cantidad entre 1 y {{max}}",
+    "split": "Oficina {{office}} · Casa {{home}}"
   }
 }

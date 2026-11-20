@@ -158,5 +158,18 @@
       "shareDialogTitle": "Save / Share Template",
       "shareTitle": "Product Import Template"
     }
+  },
+  "homeStock": {
+    "button": "Stock at home",
+    "title": "Office and home: {{name}}",
+    "office": "At the office",
+    "home": "At home",
+    "toHome": "Take home",
+    "toOffice": "Bring to office",
+    "qtyPlaceholder": "Quantity (max {{max}})",
+    "save": "Move units",
+    "saved": "Stock updated",
+    "invalid": "Enter a quantity between 1 and {{max}}",
+    "split": "Office {{office}} · Home {{home}}"
   }
 }

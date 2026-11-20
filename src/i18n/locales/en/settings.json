@@ -456,7 +456,9 @@
       "notesLabel": "Notes",
       "notesPlaceholder": "Optional",
       "total": "Total: $ {{amount}}",
-      "save": "Save Stock In"
+      "save": "Save Stock In",
+      "toHomeLabel": "Keep at home",
+      "toHomeDesc": "These units go to the stock you keep at home"
     },
     "toast": {
       "fillAll": "Please complete all fields",
@@ -794,7 +796,9 @@
       "remainingDebt": "Remaining Debt",
       "remainingDebtHint": "Customer must be selected from the list",
       "changeLabel": "Change",
-      "confirmButton": "Confirm Transaction"
+      "confirmButton": "Confirm Transaction",
+      "fromHomeLabel": "Taken from home stock",
+      "fromHomeDesc": "Deduct these units from the stock you keep at home"
     },
     "discountDialog": {
       "title": "Transaction Discount",

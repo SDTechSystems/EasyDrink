@@ -65,7 +65,8 @@ export interface Product {
   categoryId: number;
   price: number; // harga jual
   hpp: number; // harga pokok penjualan
-  stock: number;
+  stock: number; // existencia total (oficina + casa)
+  stockHome?: number; // parte de `stock` guardada en casa; la oficina tiene stock - stockHome
   trackStock?: boolean; // true/undefined = stok dikelola (default lama), false = stok tidak dikelola (selalu tersedia)
   unit: string; // satuan: pcs, kg, liter, dll
   description?: string; // deskripsi/catatan produk (opsional, multi-line)
@@ -196,6 +197,7 @@ export interface Transaction {
   closedAt?: Date;
   createdBy?: number; // userId — kasir pembuat transaksi
   debtAmount?: number; // snapshot hutang awal; 0/undefined = lunas saat checkout
+  soldFromHome?: boolean; // la mercancía salió del inventario de casa
   updatedAt?: Date;
   syncedAt?: Date | null;
 }

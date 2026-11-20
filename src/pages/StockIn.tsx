@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ArrowDownToLine, Plus, ChevronLeft } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -32,6 +33,7 @@ export default function StockInPage() {
   const [quantity, setQuantity] = useState('');
   const [buyPrice, setBuyPrice] = useState('');
   const [notes, setNotes] = useState('');
+  const [toHome, setToHome] = useState(false);
   const [filterSupplier, setFilterSupplier] = useState('all');
 
   const stockIns = useLiveQuery(() => db.stockIns.orderBy('date').reverse().toArray());
@@ -50,7 +52,7 @@ export default function StockInPage() {
   const getSupplierName = (sid: number) => suppliers?.find(s => s.id === sid)?.name ?? '-';
 
   const openAdd = () => {
-    setProductId(''); setSupplierId(''); setQuantity(''); setBuyPrice(''); setNotes('');
+    setProductId(''); setSupplierId(''); setQuantity(''); setBuyPrice(''); setNotes(''); setToHome(false);
     setDialogOpen(true);
   };
 
@@ -92,6 +94,7 @@ export default function StockInPage() {
     await db.products.update(product.id!, {
       stock: newStock,
       hpp: Math.round(newHpp),
+      ...(toHome ? { stockHome: (product.stockHome ?? 0) + qty } : {}),
       updatedAt: new Date(),
     });
 
@@ -199,6 +202,13 @@ export default function StockInPage() {
                 {t('stockIn.dialog.total', { amount: (Number(quantity) * Number(buyPrice)).toLocaleString(numberLocale) })}
               </div>
             )}
+            <div className="flex items-center justify-between gap-3 rounded-lg border border-border p-3">
+              <div>
+                <p className="text-sm font-semibold">{t('stockIn.dialog.toHomeLabel')}</p>
+                <p className="text-[10px] text-muted-foreground">{t('stockIn.dialog.toHomeDesc')}</p>
+              </div>
+              <Switch checked={toHome} onCheckedChange={setToHome} />
+            </div>
             <div className="space-y-1.5"><Label>{t('stockIn.dialog.notesLabel')}</Label><Input value={notes} onChange={e => setNotes(e.target.value)} placeholder={t('stockIn.dialog.notesPlaceholder')} className="h-11" /></div>
             <Button className="w-full h-12 text-base font-semibold" onClick={handleSave}>{t('stockIn.dialog.save')}</Button>
           </div>

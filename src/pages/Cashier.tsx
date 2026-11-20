@@ -63,6 +63,7 @@ export default function Kasir() {
   const [paymentMethodId, setPaymentMethodId] = useState<string>('');
   const [paymentAmount, setPaymentAmount] = useState('');
   const [useDebt, setUseDebt] = useState(false);
+  const [fromHome, setFromHome] = useState(false);
   const [isQuickAdding, setIsQuickAdding] = useState(false);
   const [receiptOpen, setReceiptOpen] = useState(false);
   const [lastTransaction, setLastTransaction] = useState<Transaction | null>(null);
@@ -123,6 +124,7 @@ export default function Kasir() {
     setPaymentMethodId('');
     setPaymentAmount('');
     setUseDebt(false);
+    setFromHome(false);
     setCustomerName('');
     setCustomerId(undefined);
     setTableNumber('');
@@ -429,6 +431,16 @@ export default function Kasir() {
 
   // === Checkout ===
 
+  /** Descuenta del inventario de casa (parte de `stock`) lo que se vendió desde la casa. */
+  const deductHomeStock = async () => {
+    for (const item of cart) {
+      if (!isStockManaged(item.product)) continue;
+      const product = await db.products.get(item.product.id!);
+      const home = product?.stockHome ?? 0;
+      if (home > 0) await db.products.update(item.product.id!, { stockHome: Math.max(0, home - item.qty) });
+    }
+  };
+
   const handleCheckout = async () => {
     if (useDebt) {
       if (!storeSettings?.allowDebt) return;
@@ -469,6 +481,7 @@ export default function Kasir() {
         remarks: remarks.trim() || undefined,
         closedAt: new Date(),
         debtAmount,
+        soldFromHome: fromHome || undefined,
       });
 
       if (debtAmount > 0) {
@@ -521,6 +534,8 @@ export default function Kasir() {
         }
       }
 
+      if (fromHome) await deductHomeStock();
+
       const updatedTx = await db.transactions.get(editingTxId);
       toast.success(t('cashier.toast.transactionSuccess', { receiptNumber: updatedTx?.receiptNumber }));
       setLastTransaction(updatedTx || null);
@@ -548,6 +563,7 @@ export default function Kasir() {
         remarks: remarks.trim() || undefined,
         createdBy: currentUser?.id,
         debtAmount,
+        soldFromHome: fromHome || undefined,
       };
 
       const txId = await db.transactions.add(txData);
@@ -584,6 +600,7 @@ export default function Kasir() {
         if (!isStockManaged(item.product)) continue;
         await db.products.update(item.product.id!, { stock: item.product.stock - item.qty, updatedAt: new Date() });
       }
+      if (fromHome) await deductHomeStock();
 
       toast.success(t('cashier.toast.transactionSuccess', { receiptNumber }));
       setLastTransaction({ ...txData, id: txId as number });
@@ -1317,6 +1334,16 @@ export default function Kasir() {
                     setIsQuickAdding(false);
                   }}
                 />
+              </div>
+            )}
+
+            {cart.some(c => isStockManaged(c.product) && (c.product.stockHome ?? 0) > 0) && (
+              <div className="flex items-center justify-between gap-3 rounded-lg border border-border p-3">
+                <div>
+                  <p className="text-sm font-semibold">{t('cashier.checkout.fromHomeLabel')}</p>
+                  <p className="text-[10px] text-muted-foreground">{t('cashier.checkout.fromHomeDesc')}</p>
+                </div>
+                <Switch checked={fromHome} onCheckedChange={setFromHome} />
               </div>
             )}
 

@@ -456,7 +456,9 @@
       "notesLabel": "Notas",
       "notesPlaceholder": "Opcional",
       "total": "Total: $ {{amount}}",
-      "save": "Guardar entrada"
+      "save": "Guardar entrada",
+      "toHomeLabel": "Guardar en casa",
+      "toHomeDesc": "Estas unidades quedan en el inventario de casa"
     },
     "toast": {
       "fillAll": "Completa todos los campos",
@@ -794,7 +796,9 @@
       "remainingDebt": "Deuda pendiente",
       "remainingDebtHint": "Debes seleccionar el cliente de la lista",
       "changeLabel": "Cambio",
-      "confirmButton": "Confirmar transacción"
+      "confirmButton": "Confirmar transacción",
+      "fromHomeLabel": "Sale del inventario de casa",
+      "fromHomeDesc": "Descuenta estas unidades de lo que tienes en casa"
     },
     "discountDialog": {
       "title": "Descuento de la transacción",
