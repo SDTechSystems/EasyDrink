@@ -27,5 +27,9 @@
   "lowStock": {
     "title": "Stock bajo",
     "remaining": "Quedan {{stock}} {{unit}}"
+  },
+  "receivable": {
+    "title": "Por cobrar: {{amount}}",
+    "description": "{{count}} clientes te deben · toca para ver sus cuentas"
   }
 }

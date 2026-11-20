@@ -95,13 +95,21 @@ export interface Supplier {
   syncedAt?: Date | null;
 }
 
+export interface CustomerCreditMovement {
+  id: string;
+  date: string; // ISO
+  amount: number; // positivo: el negocio le debe al cliente; negativo: se usó el saldo
+  note?: string;
+}
+
 export interface Customer {
   id?: number;
   name: string;
-  phone: string;
+  phone: string; // también se usa como número de WhatsApp
   email: string;
   address: string;
   notes: string;
+  creditMovements?: CustomerCreditMovement[]; // saldo a favor del cliente
   createdAt: Date;
   isDeleted: number; // 0 = active, 1 = deleted
   deletedAt: Date | null;

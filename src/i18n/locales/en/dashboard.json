@@ -27,5 +27,9 @@
   "lowStock": {
     "title": "Low Stock",
     "remaining": "{{stock}} {{unit}} left"
+  },
+  "receivable": {
+    "title": "To collect: {{amount}}",
+    "description": "{{count}} customers owe you · tap to see their accounts"
   }
 }

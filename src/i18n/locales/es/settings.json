@@ -337,7 +337,7 @@
       "editTitle": "Editar cliente",
       "nameLabel": "Nombre del cliente *",
       "namePlaceholder": "p. ej. Carlos Gómez",
-      "phoneLabel": "Número de teléfono",
+      "phoneLabel": "WhatsApp / teléfono",
       "phonePlaceholder": "3001234567",
       "emailLabel": "Correo electrónico",
       "emailPlaceholder": "nombre@correo.com",
@@ -368,6 +368,12 @@
       "updated": "Cliente actualizado",
       "added": "Cliente agregado",
       "deleted": "Cliente eliminado"
+    },
+    "contacts": {
+      "button": "Importar de mis contactos",
+      "unsupported": "Para importar contactos del teléfono, abre la app en Chrome de Android.",
+      "result": "Listo: {{updated}} clientes actualizados y {{created}} nuevos",
+      "error": "No se pudieron leer los contactos"
     }
   },
   "debts": {
@@ -781,11 +787,11 @@
     "checkout": {
       "title": "Pago",
       "totalLabel": "Total a pagar",
-      "debtLabel": "Pagar con deuda",
-      "debtDesc": "El pago puede quedar parcial o totalmente como deuda",
+      "debtLabel": "Fiar (todo o una parte)",
+      "debtDesc": "Escribe lo que paga ahora; el resto queda en la cuenta del cliente",
       "paymentMethod": "Método de pago",
       "amountLabel": {
-        "debt": "Pago inicial",
+        "debt": "Lo que paga ahora (0 si fía todo)",
         "full": "Monto del pago"
       },
       "amountPlaceholder": "Ingresa el monto del pago...",
@@ -1210,5 +1216,63 @@
       "saved": "Configuración guardada",
       "percentError": "El porcentaje debe estar entre 0 y 100"
     }
+  },
+  "debtsAccount": {
+    "debtors": "Clientes que deben",
+    "creditTotal": "Saldo a favor de clientes: {{amount}}",
+    "searchPlaceholder": "Buscar cliente...",
+    "filters": {
+      "settled": "Al día"
+    },
+    "upToDate": "Al día",
+    "creditBadge": "Saldo a favor {{amount}}",
+    "owes": "Debe en total",
+    "creditLabel": "Saldo a favor",
+    "statement": "Estado de cuenta",
+    "addCredit": "Agregar saldo a favor",
+    "useCredit": "Usar saldo a favor",
+    "noCustomerHint": "Este fiado no está ligado a un cliente registrado; regístralo en Clientes para usar saldo a favor y WhatsApp.",
+    "pendingTitle": "Fiados pendientes",
+    "nothingPending": "No tiene fiados pendientes.",
+    "partiallyPaid": "Abonado {{paid}} de {{total}}",
+    "creditHistory": "Movimientos de saldo a favor",
+    "paymentHint": "El abono paga primero los fiados más antiguos. Si sobra dinero, queda como saldo a favor.",
+    "credit": {
+      "help": "Úsalo cuando tú le debas dinero al cliente (por ejemplo, un cambio pendiente). Luego puedes usarlo para pagar sus fiados.",
+      "amount": "Monto",
+      "note": "Motivo (opcional)",
+      "save": "Guardar saldo a favor",
+      "defaultNote": "Saldo a favor"
+    },
+    "toast": {
+      "excessToCredit": "Abono registrado. {{amount}} quedaron como saldo a favor",
+      "creditAdded": "Saldo a favor agregado",
+      "creditUsed": "Se usaron {{amount}} del saldo a favor"
+    },
+    "pendingCount_one": "1 fiado pendiente · desde {{date}}",
+    "pendingCount_other": "{{count}} fiados pendientes · desde {{date}}"
+  },
+  "statement": {
+    "title": "Estado de cuenta",
+    "greeting": "Hola {{name}}, este es el detalle de lo pendiente:",
+    "customer": "Cliente",
+    "date": "Fecha",
+    "products": "Productos",
+    "pending": "Pendiente",
+    "total": "Total pendiente",
+    "credit": "Saldo a favor",
+    "net": "Total a pagar",
+    "paid": "abonado",
+    "missing": "falta",
+    "of": "de",
+    "thanks": "¡Gracias por apoyar {{store}}!",
+    "shareImage": "Compartir imagen",
+    "shareText": "Estado de cuenta de {{name}}",
+    "whatsappTo": "Enviar por WhatsApp a {{phone}}",
+    "whatsappNoPhone": "Enviar por WhatsApp (elegir chat)",
+    "addPhoneHint": "Agrega el WhatsApp del cliente en Clientes para abrir su chat directamente.",
+    "download": "Descargar JPG",
+    "downloaded": "Imagen guardada",
+    "error": "No se pudo crear la imagen"
   }
 }

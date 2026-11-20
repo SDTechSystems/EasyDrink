@@ -337,7 +337,7 @@
       "editTitle": "Edit Customer",
       "nameLabel": "Customer Name *",
       "namePlaceholder": "e.g. Budi Santoso",
-      "phoneLabel": "Phone Number",
+      "phoneLabel": "WhatsApp / phone",
       "phonePlaceholder": "08123456789",
       "emailLabel": "Email",
       "emailPlaceholder": "name@email.com",
@@ -368,6 +368,12 @@
       "updated": "Customer updated",
       "added": "Customer added",
       "deleted": "Customer deleted"
+    },
+    "contacts": {
+      "button": "Import from my contacts",
+      "unsupported": "To import phone contacts, open the app in Chrome on Android.",
+      "result": "Done: {{updated}} customers updated and {{created}} new",
+      "error": "Contacts could not be read"
     }
   },
   "debts": {
@@ -781,11 +787,11 @@
     "checkout": {
       "title": "Payment",
       "totalLabel": "Total to Pay",
-      "debtLabel": "Pay with debt",
-      "debtDesc": "Payment may be partially or fully as debt",
+      "debtLabel": "On credit (all or part)",
+      "debtDesc": "Enter what they pay now; the rest goes to the customer's account",
       "paymentMethod": "Payment Method",
       "amountLabel": {
-        "debt": "Initial Payment",
+        "debt": "Paid now (0 if all on credit)",
         "full": "Payment Amount"
       },
       "amountPlaceholder": "Enter payment amount...",
@@ -1210,5 +1216,63 @@
       "saved": "Settings saved",
       "percentError": "The percentage must be between 0 and 100"
     }
+  },
+  "debtsAccount": {
+    "debtors": "Customers who owe",
+    "creditTotal": "Customer credit: {{amount}}",
+    "searchPlaceholder": "Search customer...",
+    "filters": {
+      "settled": "Settled"
+    },
+    "upToDate": "Settled",
+    "creditBadge": "Credit {{amount}}",
+    "owes": "Total owed",
+    "creditLabel": "Credit",
+    "statement": "Statement",
+    "addCredit": "Add credit",
+    "useCredit": "Use credit",
+    "noCustomerHint": "This debt is not linked to a registered customer; add them in Customers to use credit and WhatsApp.",
+    "pendingTitle": "Unpaid purchases",
+    "nothingPending": "Nothing unpaid.",
+    "partiallyPaid": "Paid {{paid}} of {{total}}",
+    "creditHistory": "Credit movements",
+    "paymentHint": "Payments settle the oldest purchases first. Any extra money stays as credit.",
+    "credit": {
+      "help": "Use it when you owe the customer money (for example, pending change). You can then use it to pay their debts.",
+      "amount": "Amount",
+      "note": "Reason (optional)",
+      "save": "Save credit",
+      "defaultNote": "Credit"
+    },
+    "toast": {
+      "excessToCredit": "Payment recorded. {{amount}} kept as credit",
+      "creditAdded": "Credit added",
+      "creditUsed": "{{amount}} of credit used"
+    },
+    "pendingCount_one": "1 unpaid purchase · since {{date}}",
+    "pendingCount_other": "{{count}} unpaid purchases · since {{date}}"
+  },
+  "statement": {
+    "title": "Account statement",
+    "greeting": "Hi {{name}}, here is what is pending:",
+    "customer": "Customer",
+    "date": "Date",
+    "products": "Products",
+    "pending": "Pending",
+    "total": "Total pending",
+    "credit": "Credit",
+    "net": "Total to pay",
+    "paid": "paid",
+    "missing": "left",
+    "of": "of",
+    "thanks": "Thanks for supporting {{store}}!",
+    "shareImage": "Share image",
+    "shareText": "{{name}}'s statement",
+    "whatsappTo": "Send by WhatsApp to {{phone}}",
+    "whatsappNoPhone": "Send by WhatsApp (choose chat)",
+    "addPhoneHint": "Add the customer's WhatsApp in Customers to open their chat directly.",
+    "download": "Download JPG",
+    "downloaded": "Image saved",
+    "error": "The image could not be created"
   }
 }

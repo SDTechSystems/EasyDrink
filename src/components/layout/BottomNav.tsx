@@ -1,4 +1,4 @@
-import { Home, Package, BarChart3, Settings, ShoppingCart } from 'lucide-react';
+import { Home, Package, HandCoins, Settings, ShoppingCart } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +7,7 @@ const navItems = [
   { to: '/', icon: Home, key: 'nav.home' as const },
   { to: '/products', icon: Package, key: 'nav.products' as const },
   { to: '/cashier', icon: ShoppingCart, key: 'nav.cashier' as const, isCta: true },
-  { to: '/reports', icon: BarChart3, key: 'nav.reports' as const },
+  { to: '/debts', icon: HandCoins, key: 'nav.debts' as const },
   { to: '/settings', icon: Settings, key: 'nav.more' as const },
 ];
 

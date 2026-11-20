@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db, type Customer } from '@/lib/db';
 import { useState } from 'react';
-import { Users as UsersIcon, Plus, Edit2, Trash2, Phone, MapPin, Mail, Search, Eye, Receipt as ReceiptIcon, ShoppingBag, HandCoins, ArrowLeft } from 'lucide-react';
+import { Users as UsersIcon, Plus, Edit2, Trash2, Phone, MapPin, Mail, Search, Eye, Receipt as ReceiptIcon, ShoppingBag, HandCoins, ArrowLeft, MessageCircle, Contact } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,6 +15,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { useAuth } from '@/hooks/use-auth';
 import LockedPage from '@/components/LockedPage';
+import { whatsappNumber } from '@/lib/customer-account';
+import { canPickContacts, pickContacts, planContactMerge } from '@/lib/contacts-import';
 import { useTranslation } from 'react-i18next';
 import { CURRENCY_SYMBOL, NUMBER_LOCALE } from '@/lib/currency';
 import { getDateLocale } from '@/i18n';
@@ -96,6 +98,23 @@ export default function CustomersPage() {
     setDialogOpen(false);
   };
 
+  const importContacts = async () => {
+    try {
+      const picked = await pickContacts();
+      if (!picked.length) return;
+      const plan = planContactMerge(customers ?? [], picked);
+      await db.transaction('rw', db.customers, async () => {
+        for (const u of plan.updates) await db.customers.update(u.id, { phone: u.phone, updatedAt: new Date() });
+        for (const n of plan.creates) {
+          await db.customers.add({ name: n.name, phone: n.phone, email: '', address: '', notes: '', createdAt: new Date(), isDeleted: 0, deletedAt: null });
+        }
+      });
+      toast.success(t('customers.contacts.result', { updated: plan.updates.length, created: plan.creates.length }));
+    } catch (err) {
+      if ((err as Error)?.name !== 'AbortError') toast.error(t('customers.contacts.error'));
+    }
+  };
+
   const handleDelete = async () => {
     if (deleteId) {
       await db.customers.update(deleteId, { isDeleted: 1, deletedAt: new Date() });
@@ -120,6 +139,14 @@ export default function CustomersPage() {
           <Plus className="w-4 h-4" /> {t('customers.add')}
         </Button>
       </div>
+
+      {canPickContacts() ? (
+        <Button variant="outline" className="w-full h-10 gap-2 text-sm" onClick={importContacts}>
+          <Contact className="w-4 h-4" /> {t('customers.contacts.button')}
+        </Button>
+      ) : (
+        <p className="text-[11px] text-muted-foreground">{t('customers.contacts.unsupported')}</p>
+      )}
 
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -147,6 +174,11 @@ export default function CustomersPage() {
                     {c.phone && (
                       <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
                         <Phone className="w-3 h-3" /> {c.phone}
+                        {whatsappNumber(c.phone) && (
+                          <a href={`https://wa.me/${whatsappNumber(c.phone)}`} target="_blank" rel="noreferrer" className="ml-1 inline-flex items-center gap-0.5 text-success font-semibold" onClick={(e) => e.stopPropagation()}>
+                            <MessageCircle className="w-3 h-3" /> WhatsApp
+                          </a>
+                        )}
                       </p>
                     )}
                     {c.email && (
@@ -215,7 +247,13 @@ export default function CustomersPage() {
               {/* Contact info */}
               <div className="space-y-1.5">
                 {viewCustomer.phone && (
-                  <p className="text-sm text-muted-foreground flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> {viewCustomer.phone}</p>
+                  <p className="text-sm text-muted-foreground flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> {viewCustomer.phone}
+                    {whatsappNumber(viewCustomer.phone) && (
+                      <a href={`https://wa.me/${whatsappNumber(viewCustomer.phone)}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-success font-semibold">
+                        <MessageCircle className="w-3.5 h-3.5" /> WhatsApp
+                      </a>
+                    )}
+                  </p>
                 )}
                 {viewCustomer.email && (
                   <p className="text-sm text-muted-foreground flex items-center gap-2"><Mail className="w-3.5 h-3.5" /> {viewCustomer.email}</p>
