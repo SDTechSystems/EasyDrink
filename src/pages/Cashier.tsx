@@ -1,4 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
+import ProductThumb from '@/components/ProductThumb';
 import { db, isStockManaged, type Product, type Category, type Transaction, type TransactionItemRecord } from '@/lib/db';
 import { useState, useRef, useEffect } from 'react';
 import { Search, Plus, Minus, ShoppingCart, X, Percent, Tag, CreditCard, Banknote, Check, ScanBarcode, Package as PackageIcon, ClipboardList, Save, Pencil, User, Hash, Trash2, Barcode, Printer } from 'lucide-react';
@@ -750,11 +751,7 @@ export default function Kasir() {
               <Card key={p.id} className="border-0 shadow-sm cursor-pointer hover:shadow-md transition-shadow active:scale-[0.98]" onClick={() => addToCart(p)}>
                 <CardContent className="p-2 flex items-center gap-3">
                   <div className="w-12 h-12 bg-muted rounded-lg overflow-hidden flex items-center justify-center shrink-0">
-                    {p.photo ? (
-                      <img src={p.photo} alt={p.name} className="w-full h-full object-cover" />
-                    ) : (
-                      <PackageIcon className="w-5 h-5 text-muted-foreground/30" />
-                    )}
+                    <ProductThumb product={p} iconClassName="w-5 h-5" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex justify-between items-start gap-2">
@@ -784,11 +781,7 @@ export default function Kasir() {
               <Card key={p.id} className="border-0 shadow-sm cursor-pointer hover:shadow-md transition-shadow active:scale-[0.98]" onClick={() => addToCart(p)}>
                 <CardContent className="p-0">
                   <div className="w-full aspect-square bg-muted rounded-t-lg overflow-hidden flex items-center justify-center">
-                    {p.photo ? (
-                      <img src={p.photo} alt={p.name} className="w-full h-full object-cover" />
-                    ) : (
-                      <PackageIcon className="w-8 h-8 text-muted-foreground/30" />
-                    )}
+                    <ProductThumb product={p} iconClassName="w-8 h-8" />
                   </div>
                   <div className="p-2.5">
                     <h3 className="text-xs font-semibold truncate">{p.name}</h3>

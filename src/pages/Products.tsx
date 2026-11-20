@@ -1,4 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
+import ProductThumb from '@/components/ProductThumb';
 import { db, isStockManaged, type Product, type Category } from '@/lib/db';
 import { useState, useRef } from 'react';
 import { Plus, Search, Edit2, Trash2, Package as PackageIcon, Camera, X, Copy, Infinity as InfinityIcon, ScanLine, Upload, Download, AlertTriangle, CheckCircle2, XCircle, Loader2, FileSpreadsheet, Home as HomeIcon } from 'lucide-react';
@@ -634,11 +635,7 @@ export default function Produk() {
                 <div className="flex items-start gap-3">
                   {/* Product thumbnail */}
                   <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center shrink-0 overflow-hidden">
-                    {p.photo ? (
-                      <img src={p.photo} alt={p.name} className="w-full h-full object-cover" />
-                    ) : (
-                      <PackageIcon className="w-5 h-5 text-muted-foreground/40" />
-                    )}
+                    <ProductThumb product={p} iconClassName="w-5 h-5" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
