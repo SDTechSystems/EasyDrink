@@ -164,8 +164,8 @@ export default function Dashboard() {
 
       {/* Open Bills */}
       {openBillsCount != null && openBillsCount > 0 && (
-        <Link to="/cashier" state={{ openBills: true }}>
-          <Card className="border-0 shadow-sm bg-warning/10 hover:shadow-md transition-shadow cursor-pointer mt-2">
+        <Link to="/cashier" state={{ openBills: true }} className="block">
+          <Card className="border-0 shadow-sm bg-warning/10 hover:shadow-md transition-shadow cursor-pointer">
             <CardContent className="p-4 flex items-center gap-4">
               <div className="w-10 h-10 rounded-xl bg-warning/20 text-warning flex items-center justify-center shrink-0">
                 <ClipboardList className="w-5 h-5" />
@@ -182,7 +182,7 @@ export default function Dashboard() {
 
       {/* Deudas por cobrar */}
       {can('manage_customers') && receivable && receivable.total > 0 && (
-        <Link to="/debts">
+        <Link to="/debts" className="block">
           <Card className="border-0 shadow-sm bg-warning/10 hover:shadow-md transition-shadow cursor-pointer">
             <CardContent className="p-4 flex items-center gap-4">
               <div className="w-10 h-10 rounded-xl bg-warning/20 text-warning flex items-center justify-center shrink-0">
