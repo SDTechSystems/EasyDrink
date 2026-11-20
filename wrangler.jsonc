@@ -1,9 +1,14 @@
 {
-  // Publica la app como sitio estático en Cloudflare Workers.
+  // Publica la app (dist/) y la API de copias en la nube (worker/index.ts).
   "name": "easydrink",
+  "main": "./worker/index.ts",
   "compatibility_date": "2026-11-13",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "single-page-application"
-  }
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  // Cloudflare crea el espacio KV automáticamente en el primer despliegue.
+  "kv_namespaces": [{ "binding": "BACKUPS" }]
 }

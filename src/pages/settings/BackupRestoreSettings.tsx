@@ -11,6 +11,7 @@ import { restoreFromBackupData } from '@/lib/backup';
 import { useAuth } from '@/hooks/use-auth';
 import LockedPage from '@/components/LockedPage';
 import { NUMBER_LOCALE } from '@/lib/currency';
+import CloudBackupCard from '@/components/CloudBackupCard';
 
 
 export default function BackupRestoreSettings() {
@@ -54,6 +55,8 @@ export default function BackupRestoreSettings() {
           {t('backupRestore.title')}
         </h1>
       </div>
+
+      <CloudBackupCard />
 
       <Card className="border-0 shadow-sm">
         <CardContent className="p-4 space-y-2">

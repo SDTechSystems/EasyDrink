@@ -1112,5 +1112,54 @@
   "kitchenTicket": {
     "title": "Comanda",
     "done": "Listo"
+  },
+  "cloudBackup": {
+    "title": "Copia automática en la nube",
+    "notConnected": "Desactivada. Tus datos solo están en este teléfono.",
+    "uploading": "Subiendo copia…",
+    "lastUpload": "Última copia en la nube: {{time}}",
+    "neverUploaded": "Conectada. Aún no se ha subido ninguna copia.",
+    "keyHelp": "Crea una clave de al menos 8 caracteres y guárdala en un lugar seguro. La necesitarás para recuperar tus datos en otro teléfono.",
+    "keyPlaceholder": "Clave de la nube",
+    "connect": "Conectar",
+    "autoLabel": "Subir cambios automáticamente",
+    "uploadNow": "Subir copia ahora",
+    "restore": "Restaurar desde la nube",
+    "disconnect": "Desconectar este teléfono",
+    "choice": {
+      "title": "Ya hay datos en la nube",
+      "description": "La nube tiene una copia del {{date}} con {{count}} ventas, y este teléfono tiene menos. ¿Quieres traer esos datos a este teléfono?",
+      "keepLocal": "Usar los datos de este teléfono",
+      "restore": "Traer datos de la nube"
+    },
+    "history": {
+      "title": "Copias en la nube",
+      "empty": "Todavía no hay copias en la nube.",
+      "latest": "Más reciente",
+      "previous": "Anterior a la más reciente",
+      "day": "Copia del {{date}}",
+      "sales": "{{count}} ventas"
+    },
+    "confirmRestore": {
+      "title": "¿Restaurar esta copia?",
+      "description": "Se reemplazarán todos los datos de este teléfono con la copia \"{{name}}\".",
+      "cancel": "Cancelar",
+      "confirm": "Restaurar"
+    },
+    "toast": {
+      "connected": "Copia en la nube activada",
+      "uploaded": "Copia subida a la nube",
+      "restored": "Datos restaurados desde la nube"
+    },
+    "errors": {
+      "offline": "Sin conexión. Se subirá cuando vuelva el internet.",
+      "wrong_key": "La clave no es correcta.",
+      "short_key": "La clave debe tener al menos 8 caracteres.",
+      "missing_key": "Falta la clave de la nube.",
+      "not_found": "No se encontró la copia.",
+      "storage_unavailable": "El almacenamiento en la nube no está disponible.",
+      "too_large": "La copia es demasiado grande.",
+      "unknown": "No se pudo completar la copia en la nube."
+    }
   }
 }

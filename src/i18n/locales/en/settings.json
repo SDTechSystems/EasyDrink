@@ -1112,5 +1112,54 @@
   "kitchenTicket": {
     "title": "Kitchen Ticket",
     "done": "Done"
+  },
+  "cloudBackup": {
+    "title": "Automatic cloud backup",
+    "notConnected": "Off. Your data is only on this phone.",
+    "uploading": "Uploading backup…",
+    "lastUpload": "Last cloud backup: {{time}}",
+    "neverUploaded": "Connected. No backup uploaded yet.",
+    "keyHelp": "Create a key of at least 8 characters and keep it somewhere safe. You will need it to recover your data on another phone.",
+    "keyPlaceholder": "Cloud key",
+    "connect": "Connect",
+    "autoLabel": "Upload changes automatically",
+    "uploadNow": "Upload backup now",
+    "restore": "Restore from the cloud",
+    "disconnect": "Disconnect this phone",
+    "choice": {
+      "title": "The cloud already has data",
+      "description": "The cloud has a backup from {{date}} with {{count}} sales, and this phone has fewer. Bring that data to this phone?",
+      "keepLocal": "Use this phone's data",
+      "restore": "Bring data from the cloud"
+    },
+    "history": {
+      "title": "Cloud backups",
+      "empty": "No cloud backups yet.",
+      "latest": "Most recent",
+      "previous": "Before the most recent",
+      "day": "Backup from {{date}}",
+      "sales": "{{count}} sales"
+    },
+    "confirmRestore": {
+      "title": "Restore this backup?",
+      "description": "All data on this phone will be replaced with the backup \"{{name}}\".",
+      "cancel": "Cancel",
+      "confirm": "Restore"
+    },
+    "toast": {
+      "connected": "Cloud backup turned on",
+      "uploaded": "Backup uploaded to the cloud",
+      "restored": "Data restored from the cloud"
+    },
+    "errors": {
+      "offline": "No connection. It will upload when the internet is back.",
+      "wrong_key": "The key is not correct.",
+      "short_key": "The key must have at least 8 characters.",
+      "missing_key": "The cloud key is missing.",
+      "not_found": "The backup was not found.",
+      "storage_unavailable": "Cloud storage is not available.",
+      "too_large": "The backup is too large.",
+      "unknown": "The cloud backup could not be completed."
+    }
   }
 }
