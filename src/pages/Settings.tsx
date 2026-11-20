@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/lib/db';
 import { useState, useEffect, useMemo, useRef } from 'react';
-import { Settings, Store, CreditCard, Tag, Download, Edit2, Info, Truck, ArrowDownToLine, ArrowUpFromLine, ChevronRight, Receipt, Palette, HardDrive, Package, Camera, X, Ruler, Users as UsersIcon, ShieldCheck, LogOut, Smartphone, CheckCircle2, Globe, Share2, Wallet, Sparkles, HandCoins, ClipboardCheck, LayoutGrid } from 'lucide-react';
+import { Settings, Store, CreditCard, Tag, Download, Edit2, Info, Truck, ArrowDownToLine, ArrowUpFromLine, ChevronRight, Receipt, Palette, HardDrive, Package, Camera, X, Ruler, Users as UsersIcon, ShieldCheck, LogOut, Smartphone, CheckCircle2, Globe, Share2, Wallet, Sparkles, HandCoins, ClipboardCheck, LayoutGrid, TrendingUp } from 'lucide-react';
 import WhatsNewModal from '@/components/WhatsNewModal';
 import { FEATURES, getUnseenFeatures } from '@/lib/whats-new';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -611,6 +611,18 @@ export default function Pengaturan() {
             </Select>
           </CardContent>
         </Card>
+
+        {can('view_reports') && (
+          <Link to="/investor" className="block">
+            <Card className="border-0 shadow-sm cursor-pointer hover:shadow-md transition-shadow mb-2">
+              <CardContent className="p-3 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center"><TrendingUp className="w-4 h-4" /></div>
+                <div className="flex-1"><p className="text-sm font-semibold">{t('investor.title')}</p><p className="text-[10px] text-muted-foreground">{t('investor.menuDescription')}</p></div>
+                <ChevronRight className="w-4 h-4 text-muted-foreground" />
+              </CardContent>
+            </Card>
+          </Link>
+        )}
 
         {can('manage_backup') && (
           <Link to="/settings/backup" className="block">

@@ -1165,5 +1165,50 @@
       "too_large": "La copia es demasiado grande.",
       "unknown": "No se pudo completar la copia en la nube."
     }
+  },
+  "investor": {
+    "title": "Inversión y reparto",
+    "menuDescription": "Ganancia neta, reparto con el inversionista, aportes y retiros",
+    "permission": "Ver reportes",
+    "configure": "Configurar",
+    "explanation": "{{investor}} recibe el {{investorPct}} % de la ganancia neta como rendimiento y {{operator}} el {{operatorPct}} % por operar el negocio.",
+    "netProfit": "Ganancia neta del negocio",
+    "pendingProfit": "{{amount}} de ganancia aún por cobrar (fiados) no se cuenta todavía",
+    "expensesDeducted": "Ya se restaron {{amount}} de gastos",
+    "shareOf": "{{name}} ({{pct}} %)",
+    "capitalOf": "Capital actual de {{name}}",
+    "initialCapital": "Capital inicial",
+    "contributions": "Aportes",
+    "withdrawals": "Retiros",
+    "roi": "Retorno",
+    "byMonth": "Por mes",
+    "noData": "Todavía no hay ventas en este periodo.",
+    "movementsTitle": "Aportes y retiros de {{name}}",
+    "addMovement": "Registrar movimiento",
+    "noMovements": "No hay aportes ni retiros registrados.",
+    "movement": {
+      "withdrawal": "Retiro",
+      "contribution": "Aporte",
+      "amount": "Monto",
+      "note": "Nota (opcional)",
+      "save": "Guardar",
+      "saved": "Movimiento guardado",
+      "amountError": "Escribe un monto mayor que cero"
+    },
+    "config": {
+      "title": "Configurar inversión",
+      "investorName": "Inversionista",
+      "operatorName": "Operador",
+      "initialCapital": "Capital inicial",
+      "percent": "% para {{name}}",
+      "startDate": "Contar ventas desde",
+      "collectedOnly": "Contar solo lo cobrado",
+      "collectedOnlyDesc": "Las ventas fiadas cuentan cuando el cliente paga",
+      "deductExpenses": "Restar gastos",
+      "deductExpensesDesc": "Descuenta los gastos registrados de la ganancia",
+      "save": "Guardar",
+      "saved": "Configuración guardada",
+      "percentError": "El porcentaje debe estar entre 0 y 100"
+    }
   }
 }

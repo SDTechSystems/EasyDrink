@@ -25,6 +25,7 @@ import StockReport from "./pages/StockReport";
 import UsersPage from "./pages/Users";
 import ExpensesPage from "./pages/Expenses";
 import DebtsPage from "./pages/Debts";
+import InvestorPage from "./pages/Investor";
 import PaymentMethodsSettings from "./pages/settings/PaymentMethodsSettings";
 import ProductCategoriesSettings from "./pages/settings/ProductCategoriesSettings";
 import ExpenseCategoriesSettings from "./pages/settings/ExpenseCategoriesSettings";
@@ -159,6 +160,14 @@ const App = () => {
                     element={
                       <ErrorBoundary>
                         <ExpensesPage />
+                      </ErrorBoundary>
+                    }
+                  />
+                  <Route
+                    path="/investor"
+                    element={
+                      <ErrorBoundary>
+                        <InvestorPage />
                       </ErrorBoundary>
                     }
                   />

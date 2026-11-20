@@ -1,4 +1,5 @@
 import Dexie, { type Table } from 'dexie';
+import type { InvestorConfig } from '@/lib/investor';
 
 // === Permission keys (CR-multiuser) ===
 export type PermissionKey =
@@ -311,6 +312,7 @@ export interface StoreSettings {
   cloudStoreId?: string | null; // cloud store ID yang di-bind ke device ini untuk sync
   printLogo?: boolean; // toggle to print store logo on ESC/POS receipt
   hideWatermark?: boolean; // toggle to hide FreeKasir.com credit/watermark on ESC/POS receipt
+  investor?: Partial<InvestorConfig>; // reparto de ganancias con el inversionista
 }
 
 // === Database ===

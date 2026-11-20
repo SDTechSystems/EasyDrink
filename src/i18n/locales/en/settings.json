@@ -1165,5 +1165,50 @@
       "too_large": "The backup is too large.",
       "unknown": "The cloud backup could not be completed."
     }
+  },
+  "investor": {
+    "title": "Investment and split",
+    "menuDescription": "Net profit, investor split, contributions and withdrawals",
+    "permission": "View reports",
+    "configure": "Settings",
+    "explanation": "{{investor}} gets {{investorPct}}% of net profit as return and {{operator}} gets {{operatorPct}}% for running the business.",
+    "netProfit": "Business net profit",
+    "pendingProfit": "{{amount}} of profit still to collect (credit sales) is not counted yet",
+    "expensesDeducted": "{{amount}} of expenses already deducted",
+    "shareOf": "{{name}} ({{pct}}%)",
+    "capitalOf": "{{name}}'s current capital",
+    "initialCapital": "Initial capital",
+    "contributions": "Contributions",
+    "withdrawals": "Withdrawals",
+    "roi": "Return",
+    "byMonth": "By month",
+    "noData": "No sales in this period yet.",
+    "movementsTitle": "{{name}}'s contributions and withdrawals",
+    "addMovement": "Record movement",
+    "noMovements": "No contributions or withdrawals recorded.",
+    "movement": {
+      "withdrawal": "Withdrawal",
+      "contribution": "Contribution",
+      "amount": "Amount",
+      "note": "Note (optional)",
+      "save": "Save",
+      "saved": "Movement saved",
+      "amountError": "Enter an amount greater than zero"
+    },
+    "config": {
+      "title": "Investment settings",
+      "investorName": "Investor",
+      "operatorName": "Operator",
+      "initialCapital": "Initial capital",
+      "percent": "% for {{name}}",
+      "startDate": "Count sales from",
+      "collectedOnly": "Count only collected sales",
+      "collectedOnlyDesc": "Credit sales count when the customer pays",
+      "deductExpenses": "Deduct expenses",
+      "deductExpensesDesc": "Subtract recorded expenses from profit",
+      "save": "Save",
+      "saved": "Settings saved",
+      "percentError": "The percentage must be between 0 and 100"
+    }
   }
 }
