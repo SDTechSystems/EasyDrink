@@ -96,7 +96,7 @@ export function computeInvestorSummary(
   };
 
   for (const tx of transactions) {
-    if (tx.status !== 'completed') continue;
+    if (tx.status === 'open') continue; // ventas antiguas sin estado cuentan como completadas
     const date = new Date(tx.date);
     if (date.getTime() < start) continue;
     const profit = tx.profit || 0;

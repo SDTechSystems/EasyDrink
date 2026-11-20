@@ -21,6 +21,11 @@ describe('computeInvestorSummary', () => {
     expect(s.periods.map((p) => p.month)).toEqual(['2026-10', '2026-09']);
   });
 
+  it('counts legacy sales saved without a status', () => {
+    const legacy = { ...tx(1, '2026-09-10T12:00:00-05:00', 10000, 4000), status: undefined } as unknown as Transaction;
+    expect(computeInvestorSummary(config, [legacy], [], []).netProfit).toBe(4000);
+  });
+
   it('counts only the collected part of a sale on credit', () => {
     const debts: Debt[] = [{ id: 1, transactionId: 1, customerId: 1, customerName: 'A', originalAmount: 10000, remainingAmount: 5000, status: 'partial', createdAt: new Date(), settledAt: null }];
     const s = computeInvestorSummary(config, [tx(1, '2026-09-10T12:00:00-05:00', 10000, 4000)], debts, []);
