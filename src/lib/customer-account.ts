@@ -132,6 +132,27 @@ export async function applyCreditToDebts(customerId: number, debts: Debt[], user
 }
 
 /** Número de WhatsApp en formato internacional (Colombia por defecto). */
+/**
+ * Normaliza un usuario de WhatsApp escrito como "@usuario", "usuario" o el
+ * enlace que comparte WhatsApp ("wa.me/usuario", "https://wa.me/usuario").
+ * Devuelve el usuario sin @ y en minúsculas, '' si viene vacío, o null si
+ * no es un usuario válido (letras, números, punto y guion bajo, 3 a 35
+ * caracteres, con al menos una letra para no confundirlo con un número).
+ */
+export function normalizeWhatsappUser(input: string | undefined | null): string | null {
+  let s = (input ?? '').trim();
+  if (!s) return '';
+  s = s.replace(/^https?:\/\//i, '').replace(/^(www\.)?(wa\.me|api\.whatsapp\.com)\//i, '');
+  s = s.replace(/[?#].*$/, '').replace(/\/+$/, '').replace(/^@/, '').toLowerCase();
+  if (!/^[a-z0-9._]{3,35}$/.test(s) || !/[a-z]/.test(s)) return null;
+  return s;
+}
+
+/** Enlace que abre el chat de WhatsApp de un usuario (@). */
+export function whatsappUserUrl(user: string, text?: string): string {
+  return `https://wa.me/${encodeURIComponent(user)}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
+}
+
 export function whatsappNumber(phone: string | undefined | null): string | null {
   const digits = (phone ?? '').replace(/\D/g, '');
   if (!digits) return null;

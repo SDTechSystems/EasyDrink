@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { NUMBER_LOCALE } from '@/lib/currency';
 import { buildStatementText, rp, shortDate, type StatementLine } from '@/lib/customer-statement';
 import { downloadOrShareFile } from '@/lib/file-utils';
-import { whatsappNumber } from '@/lib/customer-account';
+import { whatsappNumber, whatsappUserUrl } from '@/lib/customer-account';
 
 interface Props {
   open: boolean;
@@ -16,11 +16,12 @@ interface Props {
   storeName: string;
   customerName: string;
   phone?: string;
+  whatsappUser?: string;
   lines: StatementLine[];
   credit: number;
 }
 
-export default function CustomerStatement({ open, onOpenChange, storeName, customerName, phone, lines, credit }: Props) {
+export default function CustomerStatement({ open, onOpenChange, storeName, customerName, phone, whatsappUser, lines, credit }: Props) {
   const { t } = useTranslation('settings');
   const ref = useRef<HTMLDivElement>(null);
   const [busy, setBusy] = useState(false);
@@ -88,8 +89,23 @@ export default function CustomerStatement({ open, onOpenChange, storeName, custo
     }
   };
 
-  const sendWhatsApp = () => {
-    const url = `https://wa.me/${wa ?? ''}?text=${encodeURIComponent(text())}`;
+  const sendWhatsApp = async () => {
+    const message = text();
+    if (!wa && whatsappUser) {
+      // Con el @ no está confirmado que WhatsApp ponga el texto en el chat,
+      // así que se copia antes para poder pegarlo si llega vacío.
+      let copied = false;
+      try {
+        await navigator.clipboard.writeText(message);
+        copied = true;
+      } catch {
+        // Sin acceso al portapapeles: se abre igual el chat.
+      }
+      window.open(whatsappUserUrl(whatsappUser, message), '_blank');
+      if (copied) toast.success(t('statement.copiedForUser'));
+      return;
+    }
+    const url = `https://wa.me/${wa ?? ''}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
@@ -163,12 +179,12 @@ export default function CustomerStatement({ open, onOpenChange, storeName, custo
           </Button>
           <Button variant="outline" className="w-full h-11 gap-2" onClick={sendWhatsApp} disabled={busy}>
             <MessageCircle className="w-4 h-4" />
-            {wa ? t('statement.whatsappTo', { phone }) : t('statement.whatsappNoPhone')}
+            {wa ? t('statement.whatsappTo', { phone }) : whatsappUser ? t('statement.whatsappTo', { phone: `@${whatsappUser}` }) : t('statement.whatsappNoPhone')}
           </Button>
           <Button variant="ghost" className="w-full h-9 gap-2 text-xs" onClick={download} disabled={busy}>
             <Download className="w-4 h-4" /> {t('statement.download')}
           </Button>
-          {!wa && <p className="text-[11px] text-muted-foreground text-center">{t('statement.addPhoneHint')}</p>}
+          {!wa && !whatsappUser && <p className="text-[11px] text-muted-foreground text-center">{t('statement.addPhoneHint')}</p>}
         </div>
       </DialogContent>
     </Dialog>

@@ -345,7 +345,11 @@
       "addressPlaceholder": "Customer address",
       "notesLabel": "Notes",
       "notesPlaceholder": "Additional notes",
-      "save": "Save"
+      "save": "Save",
+      "waUserLabel": "WhatsApp username (@)",
+      "waUserPlaceholder": "@username or wa.me/username link",
+      "waUserHint": "Optional. Paste the @ or the link the customer shares from their WhatsApp profile. If they set a username key, WhatsApp will ask for it when the chat opens.",
+      "waUserInvalid": "That WhatsApp username is not valid. Use letters, numbers, dots or underscores (3 to 35 characters)."
     },
     "deleteDialog": {
       "title": "Delete Customer?",
@@ -1273,6 +1277,7 @@
     "addPhoneHint": "Add the customer's WhatsApp in Customers to open their chat directly.",
     "download": "Download JPG",
     "downloaded": "Image saved",
-    "error": "The image could not be created"
+    "error": "The image could not be created",
+    "copiedForUser": "Text copied. If the chat opens empty, paste it and send."
   }
 }

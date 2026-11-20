@@ -443,6 +443,7 @@ export default function DebtsPage() {
           storeName={storeSettings?.storeName || 'EasyDrink'}
           customerName={selected.name}
           phone={selected.customer?.phone}
+          whatsappUser={selected.customer?.whatsappUser}
           lines={statementLines}
           credit={Math.max(0, selected.credit)}
         />

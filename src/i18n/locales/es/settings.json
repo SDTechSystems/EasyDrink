@@ -345,7 +345,11 @@
       "addressPlaceholder": "Dirección del cliente",
       "notesLabel": "Notas",
       "notesPlaceholder": "Notas adicionales",
-      "save": "Guardar"
+      "save": "Guardar",
+      "waUserLabel": "Usuario de WhatsApp (@)",
+      "waUserPlaceholder": "@usuario o enlace wa.me/usuario",
+      "waUserHint": "Opcional. Pega el @ o el enlace que comparte el cliente desde su perfil de WhatsApp. Si tiene clave de usuario, WhatsApp te la pedirá al abrir el chat.",
+      "waUserInvalid": "El usuario de WhatsApp no es válido. Usa letras, números, punto o guion bajo (3 a 35 caracteres)."
     },
     "deleteDialog": {
       "title": "¿Eliminar cliente?",
@@ -1273,6 +1277,7 @@
     "addPhoneHint": "Agrega el WhatsApp del cliente en Clientes para abrir su chat directamente.",
     "download": "Descargar JPG",
     "downloaded": "Imagen guardada",
-    "error": "No se pudo crear la imagen"
+    "error": "No se pudo crear la imagen",
+    "copiedForUser": "Texto copiado. Si el chat se abre vacío, pégalo y envíalo."
   }
 }

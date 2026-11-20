@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { db, type Debt } from '@/lib/db';
 import {
-  allocatePayment, creditBalance, whatsappNumber, recordCustomerPayment, addCustomerCredit, applyCreditToDebts,
+  allocatePayment, creditBalance, whatsappNumber, normalizeWhatsappUser, whatsappUserUrl, recordCustomerPayment, addCustomerCredit, applyCreditToDebts,
 } from '@/lib/customer-account';
 
 const debt = (id: number, date: string, remaining: number, status: Debt['status'] = 'unpaid'): Debt => ({
@@ -76,5 +76,26 @@ describe('buildStatementText', () => {
     expect(text).toMatch(/2 H2O — \$\s?6\.000 \(abonado \$\s?1\.000, falta \$\s?5\.000\)/);
     expect(text).toMatch(/\*Total pendiente: \$\s?10\.000\*/);
     expect(text).toMatch(/\*Total a pagar: \$\s?8\.000\*/);
+  });
+});
+
+describe('normalizeWhatsappUser', () => {
+  it('acepta @usuario, usuario y enlaces wa.me', () => {
+    expect(normalizeWhatsappUser('@JulietaLarar')).toBe('julietalarar');
+    expect(normalizeWhatsappUser(' julieta.lara_r ')).toBe('julieta.lara_r');
+    expect(normalizeWhatsappUser('https://wa.me/julietalarar')).toBe('julietalarar');
+    expect(normalizeWhatsappUser('wa.me/julietalarar?text=hola')).toBe('julietalarar');
+  });
+  it('vacío devuelve cadena vacía y lo inválido null', () => {
+    expect(normalizeWhatsappUser('')).toBe('');
+    expect(normalizeWhatsappUser('   ')).toBe('');
+    expect(normalizeWhatsappUser('3001234567')).toBeNull();
+    expect(normalizeWhatsappUser('ab')).toBeNull();
+    expect(normalizeWhatsappUser('juli eta')).toBeNull();
+    expect(normalizeWhatsappUser('julieta-lara')).toBeNull();
+  });
+  it('arma el enlace con texto opcional', () => {
+    expect(whatsappUserUrl('julietalarar')).toBe('https://wa.me/julietalarar');
+    expect(whatsappUserUrl('julietalarar', 'Hola Juli')).toBe('https://wa.me/julietalarar?text=Hola%20Juli');
   });
 });

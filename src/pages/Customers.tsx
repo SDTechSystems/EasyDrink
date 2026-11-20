@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db, type Customer } from '@/lib/db';
 import { useState } from 'react';
-import { Users as UsersIcon, Plus, Edit2, Trash2, Phone, MapPin, Mail, Search, Eye, Receipt as ReceiptIcon, ShoppingBag, HandCoins, ArrowLeft, MessageCircle, Contact } from 'lucide-react';
+import { Users as UsersIcon, Plus, Edit2, Trash2, Phone, MapPin, Mail, Search, Eye, Receipt as ReceiptIcon, ShoppingBag, HandCoins, ArrowLeft, MessageCircle, Contact, AtSign } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { useAuth } from '@/hooks/use-auth';
 import LockedPage from '@/components/LockedPage';
-import { whatsappNumber } from '@/lib/customer-account';
+import { whatsappNumber, normalizeWhatsappUser, whatsappUserUrl } from '@/lib/customer-account';
 import { canPickContacts, pickContacts, planContactMerge } from '@/lib/contacts-import';
 import { useTranslation } from 'react-i18next';
 import { CURRENCY_SYMBOL, NUMBER_LOCALE } from '@/lib/currency';
@@ -37,6 +37,7 @@ export default function CustomersPage() {
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [waUser, setWaUser] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [notes, setNotes] = useState('');
@@ -64,26 +65,33 @@ export default function CustomersPage() {
   const filtered = customers?.filter(c =>
     c.name.toLowerCase().includes(search.toLowerCase()) ||
     c.phone.includes(search) ||
+    (c.whatsappUser ?? '').includes(search.toLowerCase().replace(/^@/, '')) ||
     c.email.toLowerCase().includes(search.toLowerCase())
   ) ?? [];
 
   const openAdd = () => {
     setEditCustomer(null);
-    setName(''); setPhone(''); setEmail(''); setAddress(''); setNotes('');
+    setName(''); setPhone(''); setWaUser(''); setEmail(''); setAddress(''); setNotes('');
     setDialogOpen(true);
   };
 
   const openEdit = (c: Customer) => {
     setEditCustomer(c);
-    setName(c.name); setPhone(c.phone); setEmail(c.email); setAddress(c.address); setNotes(c.notes);
+    setName(c.name); setPhone(c.phone); setWaUser(c.whatsappUser ? `@${c.whatsappUser}` : ''); setEmail(c.email); setAddress(c.address); setNotes(c.notes);
     setDialogOpen(true);
   };
 
   const handleSave = async () => {
     if (!name.trim()) return;
+    const user = normalizeWhatsappUser(waUser);
+    if (user === null) {
+      toast.error(t('customers.dialog.waUserInvalid'));
+      return;
+    }
     const data = {
       name: name.trim(),
       phone: phone.trim(),
+      whatsappUser: user || undefined,
       email: email.trim(),
       address: address.trim(),
       notes: notes.trim(),
@@ -181,6 +189,14 @@ export default function CustomersPage() {
                         )}
                       </p>
                     )}
+                    {c.whatsappUser && (
+                      <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5 min-w-0">
+                        <AtSign className="w-3 h-3 shrink-0" /> <span className="truncate">{c.whatsappUser}</span>
+                        <a href={whatsappUserUrl(c.whatsappUser)} target="_blank" rel="noreferrer" className="ml-1 inline-flex items-center gap-0.5 text-success font-semibold shrink-0" onClick={(e) => e.stopPropagation()}>
+                          <MessageCircle className="w-3 h-3" /> WhatsApp
+                        </a>
+                      </p>
+                    )}
                     {c.email && (
                       <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
                         <Mail className="w-3 h-3" /> {c.email}
@@ -211,6 +227,11 @@ export default function CustomersPage() {
           <div className="space-y-4 mt-2">
             <div className="space-y-1.5"><Label>{t('customers.dialog.nameLabel')}</Label><Input value={name} onChange={e => setName(e.target.value)} placeholder={t('customers.dialog.namePlaceholder')} className="h-11" /></div>
             <div className="space-y-1.5"><Label>{t('customers.dialog.phoneLabel')}</Label><Input value={phone} onChange={e => setPhone(e.target.value)} placeholder={t('customers.dialog.phonePlaceholder')} className="h-11" type="tel" /></div>
+            <div className="space-y-1.5">
+              <Label>{t('customers.dialog.waUserLabel')}</Label>
+              <Input value={waUser} onChange={e => setWaUser(e.target.value)} placeholder={t('customers.dialog.waUserPlaceholder')} className="h-11" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
+              <p className="text-[11px] text-muted-foreground">{t('customers.dialog.waUserHint')}</p>
+            </div>
             <div className="space-y-1.5"><Label>{t('customers.dialog.emailLabel')}</Label><Input value={email} onChange={e => setEmail(e.target.value)} placeholder={t('customers.dialog.emailPlaceholder')} className="h-11" type="email" /></div>
             <div className="space-y-1.5"><Label>{t('customers.dialog.addressLabel')}</Label><Input value={address} onChange={e => setAddress(e.target.value)} placeholder={t('customers.dialog.addressPlaceholder')} className="h-11" /></div>
             <div className="space-y-1.5"><Label>{t('customers.dialog.notesLabel')}</Label><Textarea value={notes} onChange={e => setNotes(e.target.value)} placeholder={t('customers.dialog.notesPlaceholder')} rows={2} /></div>
@@ -253,6 +274,13 @@ export default function CustomersPage() {
                         <MessageCircle className="w-3.5 h-3.5" /> WhatsApp
                       </a>
                     )}
+                  </p>
+                )}
+                {viewCustomer.whatsappUser && (
+                  <p className="text-sm text-muted-foreground flex items-center gap-2 min-w-0"><AtSign className="w-3.5 h-3.5 shrink-0" /> <span className="truncate">{viewCustomer.whatsappUser}</span>
+                    <a href={whatsappUserUrl(viewCustomer.whatsappUser)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-success font-semibold shrink-0">
+                      <MessageCircle className="w-3.5 h-3.5" /> WhatsApp
+                    </a>
                   </p>
                 )}
                 {viewCustomer.email && (

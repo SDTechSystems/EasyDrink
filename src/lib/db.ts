@@ -106,6 +106,7 @@ export interface Customer {
   id?: number;
   name: string;
   phone: string; // también se usa como número de WhatsApp
+  whatsappUser?: string; // usuario (@) de WhatsApp, sin @, en minúsculas
   email: string;
   address: string;
   notes: string;
