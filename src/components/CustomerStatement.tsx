@@ -102,9 +102,12 @@ export default function CustomerStatement({ open, onOpenChange, storeName, custo
 
         <div className="rounded-lg border overflow-hidden">
           <div ref={ref} style={{ background: '#ffffff', color: '#111827', padding: 20, fontFamily: 'system-ui, sans-serif', width: '100%' }}>
-            <div style={{ background: 'linear-gradient(135deg, #1E1B6E, #6A2FD6)', color: '#fff', borderRadius: 12, padding: '14px 16px' }}>
-              <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: -0.5 }}>{storeName}</div>
-              <div style={{ fontSize: 12, opacity: 0.9 }}>{t('statement.title')} · {today}</div>
+            <div style={{ background: 'linear-gradient(135deg, #1E1B6E, #6A2FD6)', color: '#fff', borderRadius: 12, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: -0.5 }}>{storeName}</div>
+                <div style={{ fontSize: 12, opacity: 0.9 }}>{t('statement.title')} · {today}</div>
+              </div>
+              <img src="/easydrink-logo-circle.png" alt="EasyDrink" width={64} height={64} style={{ width: 64, height: 64, flexShrink: 0 }} />
             </div>
             <div style={{ marginTop: 14, fontSize: 13 }}>
               <span style={{ color: '#6B7280' }}>{t('statement.customer')}: </span>
