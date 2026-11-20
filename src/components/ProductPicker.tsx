@@ -56,7 +56,7 @@ export default function ProductPicker({
     return (
       <div className="flex items-center justify-between gap-2 rounded-xl border bg-primary/5 border-primary/30 p-3">
         <div className="min-w-0">
-          <p className="text-sm font-semibold truncate">{selected.name}</p>
+          <p className="text-sm font-semibold line-clamp-2 break-words">{selected.name}</p>
           <p className="text-xs text-muted-foreground">
             {selected.sku}
             {selected.barcode ? ` · ${selected.barcode}` : ''} · {t('productPicker.stockLabel')} {selected.stock} {selected.unit}

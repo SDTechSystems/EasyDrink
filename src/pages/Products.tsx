@@ -570,16 +570,16 @@ export default function Produk() {
   return (
     <div className="px-4 pt-6 pb-4 space-y-4">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold flex items-center gap-2">
-          <PackageIcon className="w-5 h-5 text-primary" />
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h1 className="text-xl font-bold flex items-center gap-2 min-w-0">
+          <PackageIcon className="w-5 h-5 text-primary shrink-0" />
           {t('title')}
         </h1>
         {canManage && (
           <div className="flex gap-2">
-            <Button size="sm" variant="outline" onClick={() => setImportDialogOpen(true)} className="h-9 gap-1.5">
+            <Button size="sm" variant="outline" onClick={() => setImportDialogOpen(true)} className="h-9 gap-1.5" aria-label={t('excel.importButton')} title={t('excel.importButton')}>
               <Upload className="w-4 h-4" />
-              {t('excel.importButton')}
+              <span className="hidden min-[400px]:inline">{t('excel.importButton')}</span>
             </Button>
             <Button size="sm" onClick={openAdd} className="h-9 gap-1.5">
               <Plus className="w-4 h-4" />
