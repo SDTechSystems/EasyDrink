@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { format } from 'date-fns';
-import html2canvas from 'html2canvas';
+import { captureElement } from '@/lib/capture';
 import { Download, Share2, Printer, Utensils } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
@@ -39,7 +39,7 @@ export default function Receipt({ open, onClose, transaction, items, storeSettin
     if (!receiptRef.current) return null;
     setGenerating(true);
     try {
-      const canvas = await html2canvas(receiptRef.current, {
+      const canvas = await captureElement(receiptRef.current, {
         backgroundColor: '#ffffff',
         scale: 2,
         useCORS: true,
