@@ -473,7 +473,8 @@
     "toast": {
       "fillAll": "Please complete all fields",
       "success": "Stock {{product}} increased by {{qty}}. COGS: $ {{hpp}}"
-    }
+    },
+    "csv": "CSV"
   },
   "stockOut": {
     "locked": {
