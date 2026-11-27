@@ -473,7 +473,8 @@
     "toast": {
       "fillAll": "Completa todos los campos",
       "success": "Inventario de {{product}} aumentó en {{qty}}. Costo: $ {{hpp}}"
-    }
+    },
+    "csv": "CSV"
   },
   "stockOut": {
     "locked": {

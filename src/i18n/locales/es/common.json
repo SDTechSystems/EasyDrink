@@ -71,6 +71,16 @@
     "skip": "Omitir"
   },
   "whatsNewFeatures": {
+    "2026-11-sales-analytics": {
+      "title": "Análisis de ventas con filtros",
+      "description": "En Reportes → Análisis detallado puedes ver compras por cliente, ventas en las fechas que elijas, productos, días y horas fuertes. Filtra por cliente, producto, categoría, método de pago o cajero y exporta a CSV.",
+      "ctaLabel": "Ver análisis"
+    },
+    "2026-11-inventory-csv": {
+      "title": "Inventario por CSV",
+      "description": "En Productos → Inventario CSV descarga tu inventario actual o un formulario para llenarlo. Súbelo para sumar una entrada de mercancía o corregir el conteo, indicando qué va para la oficina y qué para la casa.",
+      "ctaLabel": "Ir a productos"
+    },
     "2026-06-kitchen-ticket": {
       "title": "Imprimir comanda de cocina",
       "description": "Ahora puedes imprimir comandas de cocina (pedidos sin precios ni totales) al guardar una cuenta o desde la lista de cuentas abiertas. Incluyen casillas vacías a la derecha de cada ítem para que el personal de cocina las marque a mano.",
